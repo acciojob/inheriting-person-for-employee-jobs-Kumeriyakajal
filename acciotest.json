@@ -1,0 +1,4 @@
+{
+  "testRepo": "inheriting-person-for-employee-jobs-solution",
+  "pathToFile": "cypress/integration/tests/test.spec.js"
+}
