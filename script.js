@@ -21,6 +21,9 @@ Employee.prototype.jobGreet = function() {
 };
 var john = new Employee("John", 30, "Software Engineer");
 
+john.greet();
+john.jobGreet();
+
 
 // Do not change code below this line
 window.Person = Person;
