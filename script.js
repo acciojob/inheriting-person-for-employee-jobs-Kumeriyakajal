@@ -26,5 +26,41 @@ john.jobGreet();
 
 
 // Do not change code below this line
-window.Person = Person;
-window.Employee = Employee;
+
+it("should log the correct messages", () => {
+  cy.visit(baseUrl + "/main.html");
+
+  cy.window().then(win => {
+    const Person = win.Person;
+    const Employee = win.Employee;
+
+    const person = new Person("Alice", 25);
+    const employee = new Employee("Bob", 30, "Manager");
+
+    // Stub the console.log method
+    cy.stub(win.console, "log").as("consoleLog");
+
+    // Test the greet method of Person
+    person.greet();
+    cy.get("@consoleLog").then(log => {
+      console.log("Actual log for person.greet():", log);
+    });
+
+    cy.get("@consoleLog").should(
+      "be.calledWith",
+      `Hello, my name is Alice and I am 25 years old.`
+    );
+
+    // Test the jobGreet method of Employee
+    employee.jobGreet();
+    cy.get("@consoleLog").then(log => {
+      console.log("Actual log for employee.jobGreet():", log);
+    });
+
+    cy.get("@consoleLog").should(
+      "be.calledWith",
+      `Hello, my name is Bob and I am 30 years old, and my job title is Manager.`
+    );
+  });
+});
+
