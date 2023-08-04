@@ -19,7 +19,7 @@ Employee.prototype.constructor = Employee;
 Employee.prototype.jobGreet = function() {
   console.log(`Hello, my name is ${this.name} and I am ${this.age} years old, and my job title is ${this.jobTitle}.`);
 };
-var john = new Employee("John", 30, "Software Engineer");
+var john = new Employee("Bob", 30, "Manager");
 
 john.greet();
 john.jobGreet();
